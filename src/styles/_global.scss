@@ -1,0 +1,7 @@
+$primaryColor: #333;
+
+@use 'fonts';
+html {
+    font-family: generalFont;
+    color: $primaryColor;
+}
