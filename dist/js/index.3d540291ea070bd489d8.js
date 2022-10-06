@@ -1,586 +1,80 @@
+/******/ (function() { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ 650:
+/***/ (function() {
+
+// import "../styles/_global.scss";
+console.log("global");
+
+/***/ }),
+
+/***/ 824:
+/***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
+
 "use strict";
-(self["webpackChunkwebpack_starter"] = self["webpackChunkwebpack_starter"] || []).push([["vendors-node_modules_css-loader_dist_runtime_api_js-node_modules_css-loader_dist_runtime_getU-8861fa"],{
-
-/***/ "./node_modules/css-loader/dist/runtime/api.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
-  \*****************************************************/
-/***/ (function(module) {
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(180);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(855);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(650);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_app__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-*/
-module.exports = function (cssWithMappingToString) {
-  var list = []; // return the list of modules as css string
-
-  list.toString = function toString() {
-    return this.map(function (item) {
-      var content = "";
-      var needLayer = typeof item[5] !== "undefined";
-
-      if (item[4]) {
-        content += "@supports (".concat(item[4], ") {");
-      }
-
-      if (item[2]) {
-        content += "@media ".concat(item[2], " {");
-      }
-
-      if (needLayer) {
-        content += "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {");
-      }
-
-      content += cssWithMappingToString(item);
-
-      if (needLayer) {
-        content += "}";
-      }
-
-      if (item[2]) {
-        content += "}";
-      }
-
-      if (item[4]) {
-        content += "}";
-      }
-
-      return content;
-    }).join("");
-  }; // import a list of modules into the list
 
 
-  list.i = function i(modules, media, dedupe, supports, layer) {
-    if (typeof modules === "string") {
-      modules = [[null, modules, undefined]];
-    }
-
-    var alreadyImportedModules = {};
-
-    if (dedupe) {
-      for (var k = 0; k < this.length; k++) {
-        var id = this[k][0];
-
-        if (id != null) {
-          alreadyImportedModules[id] = true;
-        }
-      }
-    }
-
-    for (var _k = 0; _k < modules.length; _k++) {
-      var item = [].concat(modules[_k]);
-
-      if (dedupe && alreadyImportedModules[item[0]]) {
-        continue;
-      }
-
-      if (typeof layer !== "undefined") {
-        if (typeof item[5] === "undefined") {
-          item[5] = layer;
-        } else {
-          item[1] = "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {").concat(item[1], "}");
-          item[5] = layer;
-        }
-      }
-
-      if (media) {
-        if (!item[2]) {
-          item[2] = media;
-        } else {
-          item[1] = "@media ".concat(item[2], " {").concat(item[1], "}");
-          item[2] = media;
-        }
-      }
-
-      if (supports) {
-        if (!item[4]) {
-          item[4] = "".concat(supports);
-        } else {
-          item[1] = "@supports (".concat(item[4], ") {").concat(item[1], "}");
-          item[4] = supports;
-        }
-      }
-
-      list.push(item);
-    }
-  };
-
-  return list;
-};
+var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .ZP(".swiper", {// configure Swiper to use modules
+});
+jquery__WEBPACK_IMPORTED_MODULE_1___default()("body").css("color", "#222");
+console.log("index");
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
-/*!********************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
-  \********************************************************/
-/***/ (function(module) {
-
-
-
-module.exports = function (url, options) {
-  if (!options) {
-    options = {};
-  }
-
-  if (!url) {
-    return url;
-  }
-
-  url = String(url.__esModule ? url.default : url); // If url is already wrapped in quotes, remove them
-
-  if (/^['"].*['"]$/.test(url)) {
-    url = url.slice(1, -1);
-  }
-
-  if (options.hash) {
-    url += options.hash;
-  } // Should url be wrapped?
-  // See https://drafts.csswg.org/css-values-3/#urls
-
-
-  if (/["'() \t\n]|(%20)/.test(url) || options.needQuotes) {
-    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
-  }
-
-  return url;
-};
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/sourceMaps.js":
-/*!************************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/sourceMaps.js ***!
-  \************************************************************/
-/***/ (function(module) {
-
-
-
-module.exports = function (item) {
-  var content = item[1];
-  var cssMapping = item[3];
-
-  if (!cssMapping) {
-    return content;
-  }
-
-  if (typeof btoa === "function") {
-    var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(cssMapping))));
-    var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
-    var sourceMapping = "/*# ".concat(data, " */");
-    var sourceURLs = cssMapping.sources.map(function (source) {
-      return "/*# sourceURL=".concat(cssMapping.sourceRoot || "").concat(source, " */");
-    });
-    return [content].concat(sourceURLs).concat([sourceMapping]).join("\n");
-  }
-
-  return [content].join("\n");
-};
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
-  \****************************************************************************/
-/***/ (function(module) {
-
-
-
-var stylesInDOM = [];
-
-function getIndexByIdentifier(identifier) {
-  var result = -1;
-
-  for (var i = 0; i < stylesInDOM.length; i++) {
-    if (stylesInDOM[i].identifier === identifier) {
-      result = i;
-      break;
-    }
-  }
-
-  return result;
-}
-
-function modulesToDom(list, options) {
-  var idCountMap = {};
-  var identifiers = [];
-
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i];
-    var id = options.base ? item[0] + options.base : item[0];
-    var count = idCountMap[id] || 0;
-    var identifier = "".concat(id, " ").concat(count);
-    idCountMap[id] = count + 1;
-    var indexByIdentifier = getIndexByIdentifier(identifier);
-    var obj = {
-      css: item[1],
-      media: item[2],
-      sourceMap: item[3],
-      supports: item[4],
-      layer: item[5]
-    };
-
-    if (indexByIdentifier !== -1) {
-      stylesInDOM[indexByIdentifier].references++;
-      stylesInDOM[indexByIdentifier].updater(obj);
-    } else {
-      var updater = addElementStyle(obj, options);
-      options.byIndex = i;
-      stylesInDOM.splice(i, 0, {
-        identifier: identifier,
-        updater: updater,
-        references: 1
-      });
-    }
-
-    identifiers.push(identifier);
-  }
-
-  return identifiers;
-}
-
-function addElementStyle(obj, options) {
-  var api = options.domAPI(options);
-  api.update(obj);
-
-  var updater = function updater(newObj) {
-    if (newObj) {
-      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {
-        return;
-      }
-
-      api.update(obj = newObj);
-    } else {
-      api.remove();
-    }
-  };
-
-  return updater;
-}
-
-module.exports = function (list, options) {
-  options = options || {};
-  list = list || [];
-  var lastIdentifiers = modulesToDom(list, options);
-  return function update(newList) {
-    newList = newList || [];
-
-    for (var i = 0; i < lastIdentifiers.length; i++) {
-      var identifier = lastIdentifiers[i];
-      var index = getIndexByIdentifier(identifier);
-      stylesInDOM[index].references--;
-    }
-
-    var newLastIdentifiers = modulesToDom(newList, options);
-
-    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
-      var _identifier = lastIdentifiers[_i];
-
-      var _index = getIndexByIdentifier(_identifier);
-
-      if (stylesInDOM[_index].references === 0) {
-        stylesInDOM[_index].updater();
-
-        stylesInDOM.splice(_index, 1);
-      }
-    }
-
-    lastIdentifiers = newLastIdentifiers;
-  };
-};
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/insertBySelector.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/insertBySelector.js ***!
-  \********************************************************************/
-/***/ (function(module) {
-
-
-
-var memo = {};
-/* istanbul ignore next  */
-
-function getTarget(target) {
-  if (typeof memo[target] === "undefined") {
-    var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
-
-    if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
-      try {
-        // This will throw an exception if access to iframe is blocked
-        // due to cross-origin restrictions
-        styleTarget = styleTarget.contentDocument.head;
-      } catch (e) {
-        // istanbul ignore next
-        styleTarget = null;
-      }
-    }
-
-    memo[target] = styleTarget;
-  }
-
-  return memo[target];
-}
-/* istanbul ignore next  */
-
-
-function insertBySelector(insert, style) {
-  var target = getTarget(insert);
-
-  if (!target) {
-    throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
-  }
-
-  target.appendChild(style);
-}
-
-module.exports = insertBySelector;
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/insertStyleElement.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/insertStyleElement.js ***!
-  \**********************************************************************/
-/***/ (function(module) {
-
-
-
-/* istanbul ignore next  */
-function insertStyleElement(options) {
-  var element = document.createElement("style");
-  options.setAttributes(element, options.attributes);
-  options.insert(element, options.options);
-  return element;
-}
-
-module.exports = insertStyleElement;
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js":
-/*!**********************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js ***!
-  \**********************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-
-
-/* istanbul ignore next  */
-function setAttributesWithoutAttributes(styleElement) {
-  var nonce =  true ? __webpack_require__.nc : 0;
-
-  if (nonce) {
-    styleElement.setAttribute("nonce", nonce);
-  }
-}
-
-module.exports = setAttributesWithoutAttributes;
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/styleDomAPI.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/styleDomAPI.js ***!
-  \***************************************************************/
-/***/ (function(module) {
-
-
-
-/* istanbul ignore next  */
-function apply(styleElement, options, obj) {
-  var css = "";
-
-  if (obj.supports) {
-    css += "@supports (".concat(obj.supports, ") {");
-  }
-
-  if (obj.media) {
-    css += "@media ".concat(obj.media, " {");
-  }
-
-  var needLayer = typeof obj.layer !== "undefined";
-
-  if (needLayer) {
-    css += "@layer".concat(obj.layer.length > 0 ? " ".concat(obj.layer) : "", " {");
-  }
-
-  css += obj.css;
-
-  if (needLayer) {
-    css += "}";
-  }
-
-  if (obj.media) {
-    css += "}";
-  }
-
-  if (obj.supports) {
-    css += "}";
-  }
-
-  var sourceMap = obj.sourceMap;
-
-  if (sourceMap && typeof btoa !== "undefined") {
-    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
-  } // For old IE
-
-  /* istanbul ignore if  */
-
-
-  options.styleTagTransform(css, styleElement, options.options);
-}
-
-function removeStyleElement(styleElement) {
-  // istanbul ignore if
-  if (styleElement.parentNode === null) {
-    return false;
-  }
-
-  styleElement.parentNode.removeChild(styleElement);
-}
-/* istanbul ignore next  */
-
-
-function domAPI(options) {
-  var styleElement = options.insertStyleElement(options);
-  return {
-    update: function update(obj) {
-      apply(styleElement, options, obj);
-    },
-    remove: function remove() {
-      removeStyleElement(styleElement);
-    }
-  };
-}
-
-module.exports = domAPI;
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/styleTagTransform.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/styleTagTransform.js ***!
-  \*********************************************************************/
-/***/ (function(module) {
-
-
-
-/* istanbul ignore next  */
-function styleTagTransform(css, styleElement) {
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css;
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild);
-    }
-
-    styleElement.appendChild(document.createTextNode(css));
-  }
-}
-
-module.exports = styleTagTransform;
-
-/***/ }),
-
-/***/ "./node_modules/dom7/dom7.esm.js":
-/*!***************************************!*\
-  !*** ./node_modules/dom7/dom7.esm.js ***!
-  \***************************************/
+/***/ 270:
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__.r(__webpack_exports__);
+"use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "$": function() { return /* binding */ $; },
-/* harmony export */   "add": function() { return /* binding */ add; },
-/* harmony export */   "addClass": function() { return /* binding */ addClass; },
-/* harmony export */   "animate": function() { return /* binding */ animate; },
-/* harmony export */   "animationEnd": function() { return /* binding */ animationEnd; },
-/* harmony export */   "append": function() { return /* binding */ append; },
-/* harmony export */   "appendTo": function() { return /* binding */ appendTo; },
-/* harmony export */   "attr": function() { return /* binding */ attr; },
-/* harmony export */   "blur": function() { return /* binding */ blur; },
-/* harmony export */   "change": function() { return /* binding */ change; },
-/* harmony export */   "children": function() { return /* binding */ children; },
-/* harmony export */   "click": function() { return /* binding */ click; },
-/* harmony export */   "closest": function() { return /* binding */ closest; },
-/* harmony export */   "css": function() { return /* binding */ css; },
-/* harmony export */   "data": function() { return /* binding */ data; },
-/* harmony export */   "dataset": function() { return /* binding */ dataset; },
-/* harmony export */   "detach": function() { return /* binding */ detach; },
-/* harmony export */   "each": function() { return /* binding */ each; },
-/* harmony export */   "empty": function() { return /* binding */ empty; },
+/* harmony export */   "Ce": function() { return /* binding */ prepend; },
+/* harmony export */   "IV": function() { return /* binding */ removeClass; },
+/* harmony export */   "Kz": function() { return /* binding */ index; },
+/* harmony export */   "Lj": function() { return /* binding */ attr; },
+/* harmony export */   "Od": function() { return /* binding */ remove; },
+/* harmony export */   "Pb": function() { return /* binding */ outerHeight; },
+/* harmony export */   "R3": function() { return /* binding */ append; },
+/* harmony export */   "S1": function() { return /* binding */ off; },
+/* harmony export */   "S6": function() { return /* binding */ each; },
+/* harmony export */   "Vj": function() { return /* binding */ toggleClass; },
+/* harmony export */   "W2": function() { return /* binding */ styles; },
+/* harmony export */   "X$": function() { return /* binding */ trigger; },
+/* harmony export */   "cn": function() { return /* binding */ addClass; },
+/* harmony export */   "cv": function() { return /* binding */ offset; },
+/* harmony export */   "dy": function() { return /* binding */ html; },
+/* harmony export */   "eG": function() { return /* binding */ nextAll; },
+/* harmony export */   "eR": function() { return /* binding */ transition; },
 /* harmony export */   "eq": function() { return /* binding */ eq; },
-/* harmony export */   "filter": function() { return /* binding */ filter; },
-/* harmony export */   "find": function() { return /* binding */ find; },
-/* harmony export */   "focus": function() { return /* binding */ focus; },
-/* harmony export */   "focusin": function() { return /* binding */ focusin; },
-/* harmony export */   "focusout": function() { return /* binding */ focusout; },
-/* harmony export */   "hasClass": function() { return /* binding */ hasClass; },
-/* harmony export */   "height": function() { return /* binding */ height; },
-/* harmony export */   "hide": function() { return /* binding */ hide; },
-/* harmony export */   "html": function() { return /* binding */ html; },
-/* harmony export */   "index": function() { return /* binding */ index; },
-/* harmony export */   "insertAfter": function() { return /* binding */ insertAfter; },
-/* harmony export */   "insertBefore": function() { return /* binding */ insertBefore; },
+/* harmony export */   "fL": function() { return /* binding */ text; },
+/* harmony export */   "hX": function() { return /* binding */ filter; },
+/* harmony export */   "iO": function() { return /* binding */ outerWidth; },
 /* harmony export */   "is": function() { return /* binding */ is; },
-/* harmony export */   "keydown": function() { return /* binding */ keydown; },
-/* harmony export */   "keypress": function() { return /* binding */ keypress; },
-/* harmony export */   "keyup": function() { return /* binding */ keyup; },
-/* harmony export */   "mousedown": function() { return /* binding */ mousedown; },
-/* harmony export */   "mouseenter": function() { return /* binding */ mouseenter; },
-/* harmony export */   "mouseleave": function() { return /* binding */ mouseleave; },
-/* harmony export */   "mousemove": function() { return /* binding */ mousemove; },
-/* harmony export */   "mouseout": function() { return /* binding */ mouseout; },
-/* harmony export */   "mouseover": function() { return /* binding */ mouseover; },
-/* harmony export */   "mouseup": function() { return /* binding */ mouseup; },
-/* harmony export */   "next": function() { return /* binding */ next; },
-/* harmony export */   "nextAll": function() { return /* binding */ nextAll; },
-/* harmony export */   "off": function() { return /* binding */ off; },
-/* harmony export */   "offset": function() { return /* binding */ offset; },
+/* harmony export */   "iv": function() { return /* binding */ css; },
+/* harmony export */   "ld": function() { return /* binding */ transitionEnd; },
+/* harmony export */   "lp": function() { return /* binding */ next; },
+/* harmony export */   "mp": function() { return /* binding */ prev; },
 /* harmony export */   "on": function() { return /* binding */ on; },
-/* harmony export */   "once": function() { return /* binding */ once; },
-/* harmony export */   "outerHeight": function() { return /* binding */ outerHeight; },
-/* harmony export */   "outerWidth": function() { return /* binding */ outerWidth; },
-/* harmony export */   "parent": function() { return /* binding */ parent; },
-/* harmony export */   "parents": function() { return /* binding */ parents; },
-/* harmony export */   "prepend": function() { return /* binding */ prepend; },
-/* harmony export */   "prependTo": function() { return /* binding */ prependTo; },
-/* harmony export */   "prev": function() { return /* binding */ prev; },
-/* harmony export */   "prevAll": function() { return /* binding */ prevAll; },
-/* harmony export */   "prop": function() { return /* binding */ prop; },
-/* harmony export */   "remove": function() { return /* binding */ remove; },
-/* harmony export */   "removeAttr": function() { return /* binding */ removeAttr; },
-/* harmony export */   "removeClass": function() { return /* binding */ removeClass; },
-/* harmony export */   "removeData": function() { return /* binding */ removeData; },
-/* harmony export */   "resize": function() { return /* binding */ resize; },
-/* harmony export */   "scroll": function() { return /* binding */ scroll; },
-/* harmony export */   "scrollLeft": function() { return /* binding */ scrollLeft; },
-/* harmony export */   "scrollTo": function() { return /* binding */ scrollTo; },
-/* harmony export */   "scrollTop": function() { return /* binding */ scrollTop; },
-/* harmony export */   "show": function() { return /* binding */ show; },
-/* harmony export */   "siblings": function() { return /* binding */ siblings; },
-/* harmony export */   "stop": function() { return /* binding */ stop; },
-/* harmony export */   "styles": function() { return /* binding */ styles; },
-/* harmony export */   "submit": function() { return /* binding */ submit; },
-/* harmony export */   "text": function() { return /* binding */ text; },
-/* harmony export */   "toggleClass": function() { return /* binding */ toggleClass; },
-/* harmony export */   "touchend": function() { return /* binding */ touchend; },
-/* harmony export */   "touchmove": function() { return /* binding */ touchmove; },
-/* harmony export */   "touchstart": function() { return /* binding */ touchstart; },
-/* harmony export */   "transform": function() { return /* binding */ transform; },
-/* harmony export */   "transition": function() { return /* binding */ transition; },
-/* harmony export */   "transitionEnd": function() { return /* binding */ transitionEnd; },
-/* harmony export */   "trigger": function() { return /* binding */ trigger; },
-/* harmony export */   "val": function() { return /* binding */ val; },
-/* harmony export */   "value": function() { return /* binding */ value; },
-/* harmony export */   "width": function() { return /* binding */ width; }
+/* harmony export */   "oq": function() { return /* binding */ closest; },
+/* harmony export */   "pI": function() { return /* binding */ children; },
+/* harmony export */   "pJ": function() { return /* binding */ prevAll; },
+/* harmony export */   "pv": function() { return /* binding */ hasClass; },
+/* harmony export */   "qm": function() { return /* binding */ parent; },
+/* harmony export */   "sE": function() { return /* binding */ find; },
+/* harmony export */   "uV": function() { return /* binding */ removeAttr; },
+/* harmony export */   "vs": function() { return /* binding */ transform; },
+/* harmony export */   "wV": function() { return /* binding */ parents; }
 /* harmony export */ });
-/* harmony import */ var ssr_window__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ssr-window */ "./node_modules/ssr-window/ssr-window.esm.js");
+/* unused harmony exports add, animate, animationEnd, appendTo, blur, change, click, data, dataset, detach, empty, focus, focusin, focusout, height, hide, insertAfter, insertBefore, keydown, keypress, keyup, mousedown, mouseenter, mouseleave, mousemove, mouseout, mouseover, mouseup, once, prependTo, prop, removeData, resize, scroll, scrollLeft, scrollTo, scrollTop, show, siblings, stop, submit, touchend, touchmove, touchstart, val, value, width */
+/* harmony import */ var ssr_window__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(999);
 /**
  * Dom7 4.0.4
  * Minimalistic JavaScript library for DOM manipulation, with a jQuery-compatible API
@@ -666,8 +160,8 @@ function qsa(selector, context) {
 }
 
 function $(selector, context) {
-  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
-  const document = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getDocument)();
+  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__/* .getWindow */ .Jj)();
+  const document = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__/* .getDocument */ .Me)();
   let arr = [];
 
   if (!context && selector instanceof Dom7) {
@@ -1064,7 +558,7 @@ function once(...args) {
 }
 
 function trigger(...args) {
-  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__/* .getWindow */ .Jj)();
   const events = args[0].split(' ');
   const eventData = args[1];
 
@@ -1124,7 +618,7 @@ function animationEnd(callback) {
 }
 
 function width() {
-  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+  const window = getWindow();
 
   if (this[0] === window) {
     return window.innerWidth;
@@ -1151,7 +645,7 @@ function outerWidth(includeMargins) {
 }
 
 function height() {
-  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+  const window = getWindow();
 
   if (this[0] === window) {
     return window.innerHeight;
@@ -1179,8 +673,8 @@ function outerHeight(includeMargins) {
 
 function offset() {
   if (this.length > 0) {
-    const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
-    const document = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getDocument)();
+    const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__/* .getWindow */ .Jj)();
+    const document = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__/* .getDocument */ .Me)();
     const el = this[0];
     const box = el.getBoundingClientRect();
     const body = document.body;
@@ -1206,7 +700,7 @@ function hide() {
 }
 
 function show() {
-  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+  const window = getWindow();
 
   for (let i = 0; i < this.length; i += 1) {
     const el = this[i];
@@ -1225,13 +719,13 @@ function show() {
 }
 
 function styles() {
-  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__/* .getWindow */ .Jj)();
   if (this[0]) return window.getComputedStyle(this[0], null);
   return {};
 }
 
 function css(props, value) {
-  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__/* .getWindow */ .Jj)();
   let i;
 
   if (arguments.length === 1) {
@@ -1300,8 +794,8 @@ function text(text) {
 }
 
 function is(selector) {
-  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
-  const document = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getDocument)();
+  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__/* .getWindow */ .Jj)();
+  const document = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__/* .getDocument */ .Me)();
   const el = this[0];
   let compareWith;
   let i;
@@ -1377,7 +871,7 @@ function eq(index) {
 
 function append(...els) {
   let newChild;
-  const document = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getDocument)();
+  const document = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__/* .getDocument */ .Me)();
 
   for (let k = 0; k < els.length; k += 1) {
     newChild = els[k];
@@ -1409,7 +903,7 @@ function appendTo(parent) {
 }
 
 function prepend(newChild) {
-  const document = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getDocument)();
+  const document = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__/* .getDocument */ .Me)();
   let i;
   let j;
 
@@ -1671,7 +1165,7 @@ function empty() {
 // eslint-disable-next-line
 
 function scrollTo(...args) {
-  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+  const window = getWindow();
   let [left, top, duration, easing, callback] = args;
 
   if (args.length === 4 && typeof easing === 'function') {
@@ -1814,7 +1308,7 @@ function scrollLeft(...args) {
 // eslint-disable-next-line
 
 function animate(initialProps, initialParams) {
-  const window = (0,ssr_window__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+  const window = getWindow();
   const els = this;
   const a = {
     props: Object.assign({}, initialProps),
@@ -2061,26 +1555,21 @@ const touchmove = shortcut('touchmove');
 const resize = shortcut('resize');
 const scroll = shortcut('scroll');
 
-/* harmony default export */ __webpack_exports__["default"] = ($);
+/* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ((/* unused pure expression or super */ null && ($)));
 
 
 
 /***/ }),
 
-/***/ "./node_modules/ssr-window/ssr-window.esm.js":
-/*!***************************************************!*\
-  !*** ./node_modules/ssr-window/ssr-window.esm.js ***!
-  \***************************************************/
+/***/ 999:
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__.r(__webpack_exports__);
+"use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "extend": function() { return /* binding */ extend; },
-/* harmony export */   "getDocument": function() { return /* binding */ getDocument; },
-/* harmony export */   "getWindow": function() { return /* binding */ getWindow; },
-/* harmony export */   "ssrDocument": function() { return /* binding */ ssrDocument; },
-/* harmony export */   "ssrWindow": function() { return /* binding */ ssrWindow; }
+/* harmony export */   "Jj": function() { return /* binding */ getWindow; },
+/* harmony export */   "Me": function() { return /* binding */ getDocument; }
 /* harmony export */ });
+/* unused harmony exports extend, ssrDocument, ssrWindow */
 /**
  * SSR Window 4.0.2
  * Better handling for window object in SSR environment
@@ -2233,5 +1722,161 @@ function getWindow() {
 
 /***/ })
 
-}]);
-//# sourceMappingURL=vendors-node_modules_css-loader_dist_runtime_api_js-node_modules_css-loader_dist_runtime_getU-8861fa.fa979fbed47b75c23ae3.js.map
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	!function() {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = function(result, chunkIds, fn, priority) {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var chunkIds = deferred[i][0];
+/******/ 				var fn = deferred[i][1];
+/******/ 				var priority = deferred[i][2];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every(function(key) { return __webpack_require__.O[key](chunkIds[j]); })) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	!function() {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			826: 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = function(chunkId) { return installedChunks[chunkId] === 0; };
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = function(parentChunkLoadingFunction, data) {
+/******/ 			var chunkIds = data[0];
+/******/ 			var moreModules = data[1];
+/******/ 			var runtime = data[2];
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some(function(id) { return installedChunks[id] !== 0; })) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunkwebpack_starter"] = self["webpackChunkwebpack_starter"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [192,732], function() { return __webpack_require__(824); })
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ })()
+;

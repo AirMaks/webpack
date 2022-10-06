@@ -1,9 +1,6 @@
-(self["webpackChunkwebpack_starter"] = self["webpackChunkwebpack_starter"] || []).push([["libs/jquery"],{
+(self["webpackChunkwebpack_starter"] = self["webpackChunkwebpack_starter"] || []).push([[192],{
 
-/***/ "./node_modules/jquery/dist/jquery.js":
-/*!********************************************!*\
-  !*** ./node_modules/jquery/dist/jquery.js ***!
-  \********************************************/
+/***/ 855:
 /***/ (function(module, exports) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10921,4 +10918,3 @@ return jQuery;
 /***/ })
 
 }]);
-//# sourceMappingURL=jquery.a744fc4fcc662e369af1.js.map

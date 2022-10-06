@@ -10,12 +10,42 @@ const pages = fs
   .filter((fileName) => fileName.endsWith(".pug"));
 
 const objArr = pages.map((page) => {
+  fs.stat("./src/js/" + page.split(".")[0] + ".js", (err) => {
+    if (err) {
+      page.split(".")[0] = "";
+      fs.writeFile(
+        "./src/js/" + page.split(".")[0] + ".js",
+        "import './app';\n" +
+          "import '../styles/" +
+          page.split(".")[0] +
+          ".scss';",
+        "utf8",
+        (err) => {
+          if (err) {
+            return console.log(err);
+          }
+        }
+      );
+      fs.writeFile(
+        "./src/styles/" + page.split(".")[0] + ".scss",
+        "@use 'global';",
+        "utf8",
+        (err) => {
+          if (err) {
+            return console.log(err);
+          }
+        }
+      );
+    }
+  });
   return {
     [page.split(".")[0]]: "./src/js/" + page.split(".")[0] + ".js",
   };
 });
 
-const entriesObj = objArr.reduce(function (result, current) {
+console.log(objArr);
+
+const entriesObj = objArr.reduce((result, current) => {
   return Object.assign(result, current);
 }, {});
 
@@ -36,7 +66,7 @@ module.exports = {
     clean: true,
     assetModuleFilename: "assets/[hash][ext][query]",
   },
-  devtool: isDev ? "source-map" : "eval",
+  devtool: isDev ? "source-map" : false,
   optimization: {
     splitChunks: {
       chunks: "all",
