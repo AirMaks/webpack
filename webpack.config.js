@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-
+const TerserPlugin = require("terser-webpack-plugin");
 const fs = require("fs");
 
 const pages = fs
@@ -83,7 +83,8 @@ module.exports = {
         },
       },
     },
-    minimizer: [new CssMinimizerPlugin()],
+    minimize: true,
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
   },
   devServer: {
     watchFiles: ["./src"],
