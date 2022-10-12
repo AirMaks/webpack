@@ -1,5 +1,11 @@
 @font-face {
-    font-family: generalFont;
+    font-family: regular;
     src: url("../fonts/montserrat-regular.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: semibold;
+    src: url("../fonts/montserrat-semibold.ttf");
     font-display: swap;
 }

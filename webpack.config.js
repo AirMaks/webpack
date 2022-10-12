@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const fs = require("fs");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const pages = fs
   .readdirSync(path.resolve(__dirname, "src"))
@@ -28,7 +29,7 @@ const objArr = pages.map((page) => {
       );
       fs.writeFile(
         "./src/styles/" + page.split(".")[0] + ".scss",
-        "@use 'global';",
+        "@import 'global';",
         "utf8",
         (err) => {
           if (err) {
@@ -43,7 +44,7 @@ const objArr = pages.map((page) => {
   };
 });
 
-console.log(objArr);
+// console.log(objArr);
 
 const entriesObj = objArr.reduce((result, current) => {
   return Object.assign(result, current);
@@ -54,7 +55,7 @@ let mode = "development";
 if (process.env.NODE_ENV === "production") {
   mode = "production";
 }
-console.log(mode + " mode");
+
 let isDev = mode === "development";
 
 module.exports = {
@@ -70,21 +71,21 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: "all",
-      cacheGroups: {
-        jquery: {
-          test: /[\\/]node_modules[\\/]((jquery).*)[\\/]/,
-          name: "libs/jquery",
-          chunks: "all",
-        },
-        swiper: {
-          test: /[\\/]node_modules[\\/]((swiper).*)[\\/]/,
-          name: "libs/swiper",
-          chunks: "all",
-        },
-      },
+      // cacheGroups: {
+      //   jquery: {
+      //     test: /[\\/]node_modules[\\/]((jquery).*)[\\/]/,
+      //     name: "libs/jquery",
+      //     chunks: "all",
+      //   },
+      //   swiper: {
+      //     test: /[\\/]node_modules[\\/]((swiper).*)[\\/]/,
+      //     name: "libs/swiper",
+      //     chunks: "all",
+      //   },
+      // },
     },
     minimize: true,
-    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
   },
   devServer: {
     watchFiles: ["./src"],
@@ -177,6 +178,15 @@ module.exports = {
         },
         // favicon: "./src/favicon.svg",
       });
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, "./src/js/libs"), to: "./js/libs" },
+        {
+          from: path.resolve(__dirname, "./src/styles/libs"),
+          to: "./css/libs",
+        },
+      ],
     }),
   ],
 };

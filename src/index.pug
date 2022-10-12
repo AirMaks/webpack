@@ -1,20 +1,28 @@
 include pug/libs/_libs
 
 doctype html
-include pug/_head
-body
-  .container
-    //- h1 Zagar Tania!!!
-    +image('Capture001', 'png')
-    .swiper
-      .swiper-wrapper
-        .swiper-slide Slide 1
-        .swiper-slide Slide 2
-        .swiper-slide Slide 3
-      .swiper-pagination
-      .swiper-button-prev
-      .swiper-button-next
-    a(href='contacts.html') Click me!
+html
+  include pug/_head
+    title Zagar Tania!
+    script(src='js/libs/jquery-3.6.1.min.js')
+    script(src='js/libs/swiper.js')
+    script(src='js/libs/jquery.maskedinput.min.js')
+    link(href='css/libs/swiper.css' rel="stylesheet" type="text/css")
+  body
+    .container
+      //- +image('Capture001', 'png')
+      .swiper.swiper-container
+        .swiper-wrapper
+          .swiper-slide Slide 1
+          .swiper-slide Slide 2
+          .swiper-slide Slide 3
+        .swiper-pagination
+        .swiper-button-prev
+        .swiper-button-next
+
+      a(href='contacts.html') Click me!
+      
+      input(type='text' placeholder='+7 (999) 999-9999' class='phone')
 
 
 

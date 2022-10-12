@@ -20,6 +20,7 @@
     "@babel/core": "^7.19.0",
     "@babel/preset-env": "^7.19.0",
     "babel-loader": "^8.2.5",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.2.0",
     "css-mqpacker": "^7.0.0",
@@ -41,6 +42,7 @@
     "webpack-dev-server": "^4.11.0"
   },
   "dependencies": {
+    "cleave.js": "^1.6.0",
     "jquery": "^3.6.1",
     "swiper": "^8.4.2"
   }

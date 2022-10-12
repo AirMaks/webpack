@@ -1,13 +1,13 @@
-import Swiper from "swiper";
-import "swiper/css";
-import "../styles/index.scss";
-import $ from "jquery";
 import "./app";
+import "../styles/index.scss";
 
-const swiper = new Swiper(".swiper", {
-  // configure Swiper to use modules
+$(function ($) {
+  const swiper = new Swiper(".swiper", {
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
+  $(".phone").mask("+7 (999) 999–99–99");
 });
-
-$("body").css("color", "#222");
-
-console.log("index");

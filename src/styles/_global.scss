@@ -1,9 +1,18 @@
-$primaryColor: #333;
-
 @use 'fonts';
+
+
+$color: rgb(72, 179, 62);
+$borderColor: #333;
+$backgroundColor: #fff;
+$regular: regular;
+$semibold: semibold;
+
+
+
+
 html {
-    font-family: generalFont;
-    color: $primaryColor;
+    font-family: $regular;
+    color: $color;
 }
 body {
     margin: 0;
@@ -11,4 +20,9 @@ body {
 }
 * {
     box-sizing: border-box;
+    font-family: regular;
+}
+
+input::placeholder {
+    color: #ccc;
 }
