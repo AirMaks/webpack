@@ -1,9 +1,10 @@
-include pug/libs/_libs
+include pug/mixins/_all
 
 doctype html
 html
-    include pug/_head
-        title Contacts
-    body
-        .container
-            h1 Contacts
+  include pug/_head
+    title Contacts
+    +jquery()
+  body
+    .container
+      h1 Contatcs

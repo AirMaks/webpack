@@ -1,13 +1,13 @@
-include pug/libs/_libs
+include pug/mixins/_all
 
 doctype html
 html
   include pug/_head
     title Zagar Tania!
-    script(src='js/libs/jquery-3.6.1.min.js')
-    script(src='js/libs/swiper.js')
-    script(src='js/libs/jquery.maskedinput.min.js')
-    link(href='css/libs/swiper.css' rel="stylesheet" type="text/css")
+    +jquery()
+    +swiper()
+    +maskedinput()
+    
   body
     .container
       //- +image('Capture001', 'png')

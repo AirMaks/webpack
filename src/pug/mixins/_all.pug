@@ -1,0 +1,15 @@
+mixin jquery()
+    script(src='js/libs/jquery-3.6.1.min.js' defer)
+
+mixin maskedinput() 
+    script(src='js/libs/jquery.maskedinput.min.js' defer)
+
+mixin swiper()
+    script(src='js/libs/swiper.js' defer)
+    link(href='css/libs/swiper.css' rel="stylesheet" type="text/css")
+
+mixin image(name, ext)
+    img.src(src=require(`../src/images/${name}.${ext}`) alt=name)
+
+mixin globalJs()
+    script(src='js/global.js' defer)

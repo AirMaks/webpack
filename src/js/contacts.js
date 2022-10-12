@@ -1,4 +1,1 @@
-import "./app";
-import "../styles/contacts.scss";
-
-console.log("contacts");
+import '../styles/contacts.scss';

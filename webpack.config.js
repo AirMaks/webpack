@@ -16,7 +16,7 @@ const objArr = pages.map((page) => {
       page.split(".")[0] = "";
       fs.writeFile(
         "./src/js/" + page.split(".")[0] + ".js",
-        "import './app';\n" +
+        "import './global';\n" +
           "import '../styles/" +
           page.split(".")[0] +
           ".scss';",
@@ -27,6 +27,10 @@ const objArr = pages.map((page) => {
           }
         }
       );
+    }
+  });
+  fs.stat("./src/styles/" + page.split(".")[0] + ".scss", (err) => {
+    if (err) {
       fs.writeFile(
         "./src/styles/" + page.split(".")[0] + ".scss",
         "@import 'global';",
@@ -60,7 +64,7 @@ let isDev = mode === "development";
 
 module.exports = {
   mode: mode,
-  entry: entriesObj,
+  entry: Object.assign({ global: "./src/js/global.js" }, entriesObj),
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/[name].[contenthash].js",
@@ -171,7 +175,7 @@ module.exports = {
       return new HtmlWebpackPlugin({
         filename: page.split(".")[0] + ".html",
         template: "./src/" + page,
-        chunks: [page.split(".")[0]],
+        chunks: [page.split(".")[0], "global"],
         minify: {
           collapseWhitespace: false,
           removeComments: true,
